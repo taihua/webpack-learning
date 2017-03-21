@@ -1,5 +1,3 @@
-import {notify, log} from './Notification';
+import notification from './Notification';
 
-notify('Here is my message');
-
-log('Here is my message');
+notification.log('here we go');
