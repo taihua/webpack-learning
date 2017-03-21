@@ -4,7 +4,8 @@
   "description": "網址：https://laracasts.com/series/webpack-for-everyone/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/webpack src/main.js dist/bundle.js",
+    "watch": "node_modules/.bin/webpack src/main.js dist/bundle.js --watch"
   },
   "keywords": [],
   "author": "",
