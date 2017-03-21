@@ -1,0 +1,12 @@
+{
+  "name": "webpack-learning",
+  "version": "1.0.0",
+  "description": "網址：https://laracasts.com/series/webpack-for-everyone/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
