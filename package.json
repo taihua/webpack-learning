@@ -4,7 +4,8 @@
   "description": "網址：https://laracasts.com/series/webpack-for-everyone/",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/webpack",
+    "dev": "node_modules/.bin/webpack",
+    "production": "NODE_ENV=production node_modules/.bin/webpack",
     "watch": "npm run build -- --watch"
   },
   "keywords": [],
