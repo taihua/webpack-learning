@@ -19,5 +19,9 @@ module.exports = {
 				loader: "babel-loader"
 			}
 		]
-	}
+	},
+
+	plugins:[
+		new webpack.optimize.UglifyJsPlugin()
+	]
 };
