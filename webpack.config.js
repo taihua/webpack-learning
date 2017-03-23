@@ -24,7 +24,10 @@ module.exports = {
 					fallback: 'style-loader'
 				})
 			},
-
+			{
+				test: /\.png$/,
+				use: 'file-loader'
+			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
