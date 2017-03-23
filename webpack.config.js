@@ -26,7 +26,10 @@ module.exports = {
 			},
 			{
 				test: /\.png$/,
-				use: 'file-loader'
+				loader: 'file-loader',
+				options:{
+					name: '[name].[ext]'
+				}
 			},
 			{
 				test: /\.js$/,
