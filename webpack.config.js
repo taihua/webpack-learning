@@ -5,7 +5,10 @@ var inProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
 	entry: {
-		app: './src/main.js'
+		app: [
+			'./src/main.js',
+			'./src/main.scss'
+			]
 
 	},
 	output: {
