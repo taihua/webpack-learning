@@ -1,5 +1,9 @@
-$primary: red;
+$primary: white;
 
 body{
 	background: $primary;
+}
+
+.test{
+	background: url('./images/stub.png');
 }
