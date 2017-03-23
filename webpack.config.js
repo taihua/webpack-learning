@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var inProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
 	entry: './src/main.js',
@@ -24,7 +25,7 @@ module.exports = {
 	plugins:[]
 };
 
-if (process.env.NODE_ENV === 'production'){
+if (inProduction){
 	module.exports.plugins.push(
 		new webpack.optimize.UglifyJsPlugin()
 	);
