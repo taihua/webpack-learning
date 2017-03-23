@@ -28,7 +28,7 @@ module.exports = {
 				test: /\.png$/,
 				loader: 'file-loader',
 				options:{
-					name: '[name].[hash].[ext]'
+					name: 'images/[name].[hash].[ext]'
 				}
 			},
 			{
