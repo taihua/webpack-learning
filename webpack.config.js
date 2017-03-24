@@ -4,6 +4,7 @@ var glob = require('glob');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 let PurifyCSSPlugin = require('purifycss-webpack');
 var inProduction = process.env.NODE_ENV === 'production'
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -46,6 +47,11 @@ module.exports = {
 
     plugins:[
         new ExtractTextPlugin('[name].css'),
+        new CleanWebpackPlugin(['dist'], {
+          root: __dirname,
+          verbose: true,
+          dry: false
+        }),
         // Make sure this is after ExtractTextPlugin!
         new PurifyCSSPlugin({
             // Give paths to parse for rules. These should be absolute!
