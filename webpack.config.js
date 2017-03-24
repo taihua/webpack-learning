@@ -7,7 +7,7 @@ var inProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
     entry: {
-        app: [
+        main: [
             './src/main.js',
             './src/main10.scss'
             ]
@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname,'./dist'),
-        filename: '[name].js'
+        filename: '[name].[hash].js'
     },
     module: {
         rules : [
