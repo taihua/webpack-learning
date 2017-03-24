@@ -10,12 +10,15 @@ module.exports = {
         main: [
             './src/main.js',
             './src/main10.scss'
-            ]
+            ],
+        vendor:[
+            'jquery'
+        ]
 
     },
     output: {
         path: path.resolve(__dirname,'./dist'),
-        filename: '[name].[hash].js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules : [
