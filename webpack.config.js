@@ -10,7 +10,7 @@ module.exports = {
     entry: {
         main: [
             './src/main.js',
-            './src/main10.scss'
+            './src/main.scss'
             ],
         vendor:[
             'jquery'
@@ -31,11 +31,22 @@ module.exports = {
                 })
             },
             {
-                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'file-loader',
-                options:{
-                    name: 'images/[name].[hash].[ext]'
-                }
+                test: /\.(svg|eot|ttf|woff|woff2)$/,
+                use: 'file-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loaders:[
+                    {
+                        loader: 'file-loader',
+                        options:{
+                            name: 'images/[name].[hash].[ext]'
+                        }
+                    },
+
+                    'img-loader'
+                ]
+
             },
             {
                 test: /\.js$/,
@@ -52,12 +63,12 @@ module.exports = {
           verbose: true,
           dry: false
         }),
-        // Make sure this is after ExtractTextPlugin!
-        new PurifyCSSPlugin({
-            // Give paths to parse for rules. These should be absolute!
-            paths: glob.sync(path.join(__dirname, 'index.html')),
-            minimize: inProduction
-        }),
+//        // Make sure this is after ExtractTextPlugin!
+//        new PurifyCSSPlugin({
+//            // Give paths to parse for rules. These should be absolute!
+//            paths: glob.sync(path.join(__dirname, 'index.html')),
+//            minimize: inProduction
+//        }),
         new webpack.LoaderOptionsPlugin({
           minimize: inProduction
         }),
