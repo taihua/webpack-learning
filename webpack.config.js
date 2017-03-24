@@ -1,54 +1,61 @@
 var webpack = require('webpack');
 var path = require('path');
+var glob = require('glob');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+let PurifyCSSPlugin = require('purifycss-webpack');
 var inProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
-	entry: {
-		app: [
-			'./src/main.js',
-			'./src/main.scss'
-			]
+    entry: {
+        app: [
+            './src/main.js',
+            './src/main10.scss'
+            ]
 
-	},
-	output: {
-		path: path.resolve(__dirname,'./dist'),
-		filename: '[name].js'
-	},
-	module: {
-		rules : [
-			{
-				test: /\.s[ac]ss$/,
-				use: ExtractTextPlugin.extract({
-					use: [ 'css-loader', 'sass-loader'],
-					fallback: 'style-loader'
-				})
-			},
-			{
-				test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-				loader: 'file-loader',
-				options:{
-					name: 'images/[name].[hash].[ext]'
-				}
-			},
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: "babel-loader"
-			}
-		]
-	},
+    },
+    output: {
+        path: path.resolve(__dirname,'./dist'),
+        filename: '[name].js'
+    },
+    module: {
+        rules : [
+            {
+                test: /\.s[ac]ss$/,
+                use: ExtractTextPlugin.extract({
+                    use: [ 'css-loader', 'sass-loader'],
+                    fallback: 'style-loader'
+                })
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+                loader: 'file-loader',
+                options:{
+                    name: 'images/[name].[hash].[ext]'
+                }
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }
+        ]
+    },
 
-	plugins:[
-		new ExtractTextPlugin('[name].css'),
-		new webpack.LoaderOptionsPlugin({
-		  minimize: inProduction
-		})
-	]
+    plugins:[
+        new ExtractTextPlugin('[name].css'),
+        // Make sure this is after ExtractTextPlugin!
+        new PurifyCSSPlugin({
+            // Give paths to parse for rules. These should be absolute!
+            paths: glob.sync(path.join(__dirname, 'index.html')),
+        }),
+        new webpack.LoaderOptionsPlugin({
+          minimize: inProduction
+        })
+    ]
 };
 
 if (inProduction){
-	module.exports.plugins.push(
-		new webpack.optimize.UglifyJsPlugin()
-	);
+    module.exports.plugins.push(
+        new webpack.optimize.UglifyJsPlugin()
+    );
 }
